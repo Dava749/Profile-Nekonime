@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Nekonime — Situs anime subtitle indonesia</title>
+
+  <style>
+    :root{
+      --maroon:#7a1212;
+      --accent:#c03b3b;
+      --bg:#fbf5f5;
+      --card:#fff;
+      --muted:#6b6b6b;
+      --radius:12px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{
+        height:100%;
+        margin:0;
+        font-family:Poppins,system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+        -webkit-font-smoothing:antialiased;
+        -moz-osx-font-smoothing:grayscale;
+    }
+    body{
+        background:var(--bg);
+        color:#222;
+        display:flex;
+        min-height:100vh;
+        flex-direction:column;
+    }
+
+    .site-header{
+      width:100%;
+      background:var(--card);
+      padding:14px 20px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.03);
+      border-bottom:1px solid #f0eaea;
+      display:flex;
+      align-items:center;
+    }
+    .site-header .brand{
+      font-weight:800;
+      color:var(--maroon);
+      letter-spacing:1px;
+      font-size:18px;
+    }
+
+    .app{
+      display:flex;
+      flex:1;
+      gap:0;
+      align-items:stretch;
+    }
+
+    .sidebar{
+        width:220px;
+        background:var(--maroon);
+        color:#fff;
+        padding:20px;
+        display:flex;
+        flex-direction:column;
+        gap:14px;
+        min-height:0; 
+    }
+
+    .brand-small{
+        font-weight:700;
+        letter-spacing:1px
+    }
+
+    nav{
+        display:flex;
+        flex-direction:column;
+        gap:8px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    nav a{
+        color:#ffdfdf;
+        text-decoration:none;
+        padding:8px;
+        border-radius:8px;
+        display:inline-block;
+    }
+
+    nav a.active{background:rgba(255,255,255,0.06)}
+
+    .main{
+        flex:1;
+        padding:24px;
+        display:flex;
+        flex-direction:column;
+        gap:18px;
+        min-width:0; 
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      width:100%;
+      background:var(--card);
+      padding:12px 16px;
+      border-radius:var(--radius);
+      box-shadow:0 6px 18px rgba(0,0,0,0.04);
+      border:1px solid #f0eaea;
+    }
+    .topbar .left{
+        display:flex;
+        align-items:center;
+        gap:12px
+    }
+
+    .logo-small{
+        font-weight:800;
+        color:var(--maroon);
+        letter-spacing:1px
+    }
+
+    .breadcrumb{
+        font-size:13px;
+        color:var(--muted)
+    }
+
+    .topbar .right{
+        display:flex;
+        align-items:center;
+        gap:10px
+    }
+
+    .search{
+        display:flex;
+        align-items:center;
+        gap:8px;
+        background:#fff;
+        border:1px solid #eee;
+        padding:6px;border-radius:10px;
+        min-width:220px
+    }
+
+    .search input{
+        border:0;
+        outline:0;
+        padding:6px;
+        width:140px
+    }
+
+    .btn-mini{
+        padding:8px 10px;
+        border-radius:8px;
+        border:0;background:var(--accent);
+        color:#fff;
+        cursor:pointer;
+        font-weight:600
+    }
+
+    .profile-mini{
+        font-size:13px;
+        color:var(--muted);
+        padding:6px 8px;
+        border-radius:8px;
+        border:1px solid #f0eaea;
+        background:#fff
+    }
+
+    .card{
+        max-width:920px;
+        margin:0 auto;
+        background:var(--card);
+        border-radius:var(--radius);
+        padding:20px;
+        box-shadow:0 6px 18px rgba(0,0,0,0.06);
+        min-width:0
+    }
+
+    .header{
+        display:flex;
+        gap:16px;
+        align-items:center
+    }
+
+    .avatar{
+        width:96px;
+        height:96px;
+        border-radius:10px;
+        object-fit:cover
+    }
+
+    h1{
+        margin:0;
+        font-size:20px;
+        color:var(--maroon)
+    }
+
+    p.lead{
+        margin:4px 0 0;
+        color:var(--muted);
+        font-size:14px
+    }
+
+    .tabs{
+        display:flex;
+        gap:8px;
+        margin-top:14px;
+        overflow:auto;
+        -webkit-overflow-scrolling:touch
+    }
+
+    .tab{
+        padding:8px 12px;
+        border-radius:8px;
+        border:1px solid #f0eaea;
+        background:transparent;
+        cursor:pointer;
+        white-space:nowrap
+    }
+
+    .tab.active{
+        background:var(--maroon);
+        color:#fff;
+        border-color:transparent
+    }
+
+    form.grid{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:12px;
+        margin-top:14px;
+        align-items:start
+    }
+
+    label{
+        display:block;
+        font-size:13px;
+        margin-bottom:6px;
+        color:#333
+    }
+
+    input,select,textarea{width:100%;
+        padding:8px;
+        border-radius:8px;
+        border:1px solid #e9e3e3;
+        background:#fff;
+        font-size:14px
+    }
+
+    .full{
+        grid-column:1 / -1
+    }
+
+    .actions{
+        display:flex;
+        gap:8px;
+        justify-content:flex-end;
+        margin-top:12px
+    }
+
+    .btn{
+        padding:10px 14px;
+        border-radius:8px;
+        border:0;
+        cursor:pointer
+    }
+
+    .btn.primary{
+        background:var(--accent);
+        color:#fff
+    }
+
+    .btn.ghost{
+        background:transparent;
+        border:1px solid #ddd
+    }
+
+    .profile{display:flex;
+        gap:12px;
+        align-items:center;
+        padding:12px;
+        border-radius:10px;
+        background:linear-gradient(180deg,#fff,#fff);
+        border:1px solid #f0eaea
+    }
+
+    .profile h3{
+        margin:0;
+        color:var(--maroon)
+    }
+
+    .profile p{
+        margin:2px 0;
+        color:var(--muted)
+    }
+
+    .nav-horizontal{
+      display:flex !important;
+      flex-direction:row !important;
+      gap:10px !important;
+      overflow-x:auto;
+      white-space:nowrap;
+      -webkit-overflow-scrolling:touch;
+    }
+    .nav-horizontal a{
+        display:inline-block;
+        white-space:nowrap
+    }
+
+    .tabs{
+        max-width:100%;
+    }
+
+  </style>
+</head>
+<body>
+  <header class="site-header" role="banner" aria-label="Header Nekonime">
+    <div class="brand">NEKONIME.ID</div>
+  </header>
+
+  <div class="app" role="application">
+    <aside class="sidebar" role="navigation" aria-label="Navigasi utama">
+      <div class="brand-small" aria-hidden="true">NEKONIME.ID</div>
+      <nav id="main-nav" aria-label="Menu utama">
+        <a href="#" class="active" data-tab="home">Beranda</a>
+        <a href="#" data-tab="profile">Profil</a>
+        <a href="#" data-tab="daftar">Daftar</a>
+      </nav>
+    </aside>
+
+    <main class="main" role="main" aria-live="polite">
+      <div class="topbar" role="region" aria-label="Topbar">
+        <div class="left">
+          <div class="logo-small">NEKONIME.ID</div>
+          <div class="breadcrumb">Nonton anime subtitle indonesia lengkap</div>
+        </div>
+
+        <div class="right">
+          <div class="search" role="search" aria-label="Search anime">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M21 21l-4.35-4.35" stroke="#c3c3c3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="11" cy="11" r="6" stroke="#c3c3c3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <input type="text" placeholder="Cari judul anime..." aria-label="Cari">
+          </div>
+
+          <button class="btn-mini" aria-label="Cari tombol">Cari</button>
+          <div class="profile-mini" aria-hidden="true">Muhammad Dava</div>
+        </div>
+      </div>
+
+      <div class="card" id="app">
+        <div class="header">
+          <img src="image.png" alt="avatar" class="avatar">
+          <div>
+           <h1 id="page-title">NEKONIME</h1>
+           <p class="lead" id="page-sub">Nonton anime dengan subtitle indonesia lengkap di nekonime jadi makin makin suka!</p>
+            <div class="tabs" role="tablist" aria-label="Tab navigasi konten">
+              <button class="tab active" data-tab="home" role="tab" aria-selected="true">Beranda</button>
+              <button class="tab" data-tab="profile" role="tab" aria-selected="false">Profil</button>
+              <button class="tab" data-tab="daftar" role="tab" aria-selected="false">Daftar</button>
+            </div>
+          </div>
+        </div>
+
+        <section id="panel-home" style="margin-top:14px">
+          <h2 style="font-size:16px;margin:0 0 8px">HAI HAI WIBUFANS!!!</h2>
+          <p style="margin:0;color:var(--muted)">Selamat datang di situs <strong>Nekonime</strong> tempat dimana kamu bisa menonton anime dengan santai, jernih, jelas dengan subtitle bahasa lebih lengkap loh!! sebelum lanjut silahkan membuat  <strong>Akun Profil</strong> lebih dahulu ya!!!</p>
+        </section>
+
+        <section id="panel-profile" style="display:none;margin-top:14px">
+          <h2 style="font-size:16px;margin:0 0 8px">Tentang Saya</h2>
+          <div class="profile">
+             <img src="4e888902f32fc0034903dd78fdddb09d.png" alt="avatar" class="avatar">
+            <div>
+              <h3 id="prof-name">Muhammad Dava Hafiz Permana</h3>
+              <p id="prof-nick">Panggilan: Dava</p>
+              <p id="prof-desc" style="font-size:13px;color:var(--muted)">Asal: Boyolali • Mahasiswa Universitas Teknologi Yogyakarta (2024)</p>
+              <p style="margin-top:8px;color:var(--muted);font-size:13px;max-width:520px">
+                Saya merupakan mahasiswa asal Boyolali yang sedang menempuh pendidikan di Universitas Teknologi Yogyakarta. Saya menyukai dunia anime dan hal yang berkaitan culture Jepang.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="panel-daftar" style="display:none;margin-top:14px">
+          <h2 style="font-size:16px;margin:0 0 8px">Formulir Pendaftaran</h2>
+          <form id="formDaftar" class="grid" aria-label="form pendaftaran">
+            <div>
+              <label for="nama_lengkap">Nama lengkap</label>
+              <input id="nama_lengkap" name="nama_lengkap" placeholder="Muhammad Dava Hafiz Permana" required>
+            </div>
+
+            <div>
+              <label for="nama_panggilan">Nama panggilan</label>
+              <input id="nama_panggilan" name="nama_panggilan" placeholder="Dava">
+            </div>
+
+            <div>
+              <label for="tempat">Tempat lahir</label>
+              <input id="tempat" name="tempat" placeholder="Boyolali">
+            </div>
+
+            <div>
+              <label>Tanggal lahir</label>
+              <div style="display:flex;gap:6px">
+                <select name="tgl"><option>04</option></select>
+                <select name="bln"><option>Maret</option></select>
+                <select name="thn"><option>2006</option></select>
+              </div>
+            </div>
+
+            <div>
+              <label for="alamat">Alamat</label>
+              <input id="alamat" name="alamat" placeholder="Yogyakarta">
+            </div>
+
+            <div>
+              <label>Jenis kelamin</label>
+              <div style="display:flex;gap:8px;align-items:center">
+                <label><input type="radio" name="jk" value="L" checked> Laki-laki</label>
+                <label><input type="radio" name="jk" value="P"> Perempuan</label>
+              </div>
+            </div>
+
+            <div>
+              <label for="Waifu">Waifu Idaman</label>
+              <input id="Waifu" name="Waifu" placeholder="Miku Nakano">
+            </div>
+
+            <div>
+              <label for="Wibu">Seberapa persen wibu kamu</label>
+              <input id="Wibu" name="Wibu" placeholder="Aku 100% suka anime banget">
+            </div>
+
+            <div class="full">
+              <label for="note">Catatan (opsional)</label>
+              <textarea id="note" name="note" rows="3" placeholder="Berikan posan moral kamu bila perlu"></textarea>
+            </div>
+
+            <div class="full actions">
+              <button type="reset" class="btn ghost">Reset</button>
+              <button type="submit" class="btn primary">Kirim</button>
+            </div>
+          </form>
+        </section>
+
+        <footer style="margin-top:16px;font-size:13px;color:var(--muted)">© Nekonime — Pengen jadi wibu banget? Nekonime solusinya!</footer>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    (function(){
+      const tabs = document.querySelectorAll('.tab');
+      const navLinks = document.querySelectorAll('nav a[data-tab]');
+      const panels = {
+        home: document.getElementById('panel-home'),
+        profile: document.getElementById('panel-profile'),
+        daftar: document.getElementById('panel-daftar')
+      };
+      const nav = document.getElementById('main-nav');
+
+      function show(tab){
+        Object.values(panels).forEach(p=>p.style.display='none');
+        panels[tab].style.display='';
+        tabs.forEach(t=>{
+          const active = t.dataset.tab===tab;
+          t.classList.toggle('active', active);
+          t.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        navLinks.forEach(n=>n.classList.toggle('active', n.dataset.tab===tab));
+        const title = document.getElementById('page-title');
+        const sub = document.getElementById('page-sub');
+        if(tab==='home'){ title.textContent='NEKONIME.ID'; sub.textContent='Nonton anime dengan subtitle indonesia lengkap di nekonime jadi makin makin suka!.' }
+        if(tab==='profile'){ title.textContent='Tentang Saya'; sub.textContent='Informasi singkat akun.' }
+        if(tab==='daftar'){ title.textContent='Pendaftaran'; sub.textContent='Isi data dengan jujur dan singkat.' }
+      }
+
+      tabs.forEach(t=>t.addEventListener('click', ()=>show(t.dataset.tab)));
+      navLinks.forEach(n=>n.addEventListener('click', function(e){ e.preventDefault(); show(n.dataset.tab); }));
+
+      show('home');
+      const form = document.getElementById('formDaftar');
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(form).entries());
+        if(data.nama_lengkap){ document.getElementById('prof-name').textContent = data.nama_lengkap; }
+        if(data.nama_panggilan){ document.getElementById('prof-nick').textContent = 'Panggilan: ' + data.nama_panggilan; }
+        alert('Terima kasih — data Anda sudah tercatat.');
+        form.reset();
+        show('profile');
+      });
+
+      function updateNavLayout(){
+        const w = window.innerWidth || document.documentElement.clientWidth;
+        if(w <= 900){
+          nav.classList.add('nav-horizontal');
+        } else {
+          nav.classList.remove('nav-horizontal');
+        }
+      }
+      updateNavLayout();
+      window.addEventListener('resize', updateNavLayout);
+      navLinks.forEach(a=>{
+        a.addEventListener('keydown', function(e){
+          if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
